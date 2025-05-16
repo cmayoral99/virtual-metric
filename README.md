@@ -186,3 +186,11 @@ To solve the identified problem, a strategy was adopted where the turtle is prog
 * **Data-based adjustments:**  
   It is recommended to perform tests in real hospital environments to precisely calibrate pauses and validate controller behavior under operational conditions.
 
+## Personal Conclusion
+
+This project helped me better understand the importance of having a reliable feedback system to precisely control movement in robots, especially in sensitive applications like medication dispensing. Since the motor lacked a physical encoder, simulating a proportional controller in Turtlesim was a good alternative to maintain control and avoid cumulative errors.
+
+During testing, I saw that although the controller is simple, with some adjustments and strategies like always returning to zero degrees, it achieves the necessary precision for the system to work well and be safe in a hospital environment.
+
+Additionally, this project made me realize how fundamental ROS is as a platform for robot programming and how control system design is key to making systems work reliably. It became clear that while solutions can be simple, their correct implementation is crucial for practical applications. This work lays a solid foundation to move forward toward the physical implementation of the robot and to continue improving it through real-world testing.
+
