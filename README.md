@@ -1,5 +1,6 @@
-### Claudia Fernanda Mayoral Sánchez 175787
+
 # Report on Results and Analysis of the Virtual Metric in the Turtlesim Simulation. 
+# Claudia Fernanda Mayoral Sánchez 175787
 ## 1. Code
 
 The presented code effectively implements a virtual angular control metric using a proportional controller, striking a balance between precision and simplicity. Constant reading of the angular position and dynamic error calculation enable fine control that emulates a physical encoder’s function.
