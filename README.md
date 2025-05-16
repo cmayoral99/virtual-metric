@@ -37,7 +37,7 @@ self.rate = rospy.Rate(10)
 Explanation:
 The ROS node is initialized to control the turtle. It subscribes to the /turtle1/pose topic to continuously receive updates on the turtle's current position and orientation, storing the angle in self.current_theta via the pose_callback method. Concurrently, it publishes angular velocity commands to the /turtle1/cmd_vel topic. The update rate is set to 10 Hz, balancing responsiveness and computational load.
 
-2. Continuous Reading of Angular Position
+## 2. Continuous Reading of Angular Position
 python
 Copiar
 def pose_callback(self, pose):
