@@ -1,3 +1,4 @@
+### Claudia Fernanda Mayoral Sánchez 175787
 # Report on Results and Analysis of the Virtual Metric in the Turtlesim Simulation. 
 ## 1. Code
 
@@ -193,4 +194,13 @@ This project helped me better understand the importance of having a reliable fee
 During testing, I saw that although the controller is simple, with some adjustments and strategies like always returning to zero degrees, it achieves the necessary precision for the system to work well and be safe in a hospital environment.
 
 Additionally, this project made me realize how fundamental ROS is as a platform for robot programming and how control system design is key to making systems work reliably. It became clear that while solutions can be simple, their correct implementation is crucial for practical applications. This work lays a solid foundation to move forward toward the physical implementation of the robot and to continue improving it through real-world testing.
+
+# References: 
+OpenAI. (2024). ChatGPT (modelo GPT-4) [Modelo de lenguaje AI]. https://chat.openai.com/
+
+Forbes Mexico (2020). More Hospitals andBeds to Attend COVID-19 in CDMX. Retrieved from: https://forbes.com.mx/noticias-mas-hospitales-y-camas-para-atender-covid-19-cdmx/
+
+Instructables (2023). A Simple Touchless Candy Dispenser. Retrieved from: https://www.instructables.com/A-Simple-Touchless-Candy-Dispenser/
+
+
 
