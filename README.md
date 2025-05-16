@@ -37,15 +37,16 @@ self.rate = rospy.Rate(10)
 Explanation:
 The ROS node is initialized to control the turtle. It subscribes to the /turtle1/pose topic to continuously receive updates on the turtle's current position and orientation, storing the angle in self.current_theta via the pose_callback method. Concurrently, it publishes angular velocity commands to the /turtle1/cmd_vel topic. The update rate is set to 10 Hz, balancing responsiveness and computational load.
 ```
-2. Continuous Reading of Angular Position
+## 2. Continuous Reading of Angular Position
 ```python
 
 def pose_callback(self, pose):
     self.current_theta = pose.theta
+```
 Explanation:
 Every time a position update arrives, pose_callback updates the current angle self.current_theta. This simulates the continuous reading an encoder would provide in a real motor system, enabling real-time feedback control.
 
-3. Angular Error Calculation and Proportional Control
+## 3. Angular Error Calculation and Proportional Control
 ```python
 
 error_theta = target_theta - self.current_theta
@@ -64,7 +65,7 @@ The angular error is computed as the difference between the target angle target_
 
 This mechanism effectively simulates an encoder’s feedback function, providing dynamic error measurement and enabling continuous position correction.
 
-4. Publishing Movement Commands and Precision Check
+## 4. Publishing Movement Commands and Precision Check
 ```python
 
 twist_msg = Twist()
@@ -80,7 +81,7 @@ A Twist message containing the calculated angular velocity is published to move 
 
 This stopping criterion mimics the precision of a motor with a physical encoder that can halt at an exact angular position.
 
-5. Return-to-Zero Mechanism
+## 5. Return-to-Zero Mechanism
 ```python
 Copiar
 def rotate_back_to_zero(self):
@@ -89,7 +90,7 @@ def rotate_back_to_zero(self):
 Explanation:
 To prevent cumulative errors over multiple rotations, the turtle is programmed to return to a zero-degree reference position after each rotation. This ensures every new rotation command starts from a known, precise reference point, maintaining alignment and minimizing drift.
 
-6. User Interaction for Target Angle Input
+## 6. User Interaction for Target Angle Input
 ```python
 
 def get_target_angle_from_user(self):
@@ -99,7 +100,7 @@ def get_target_angle_from_user(self):
 Explanation:
 This method simulates the system receiving instructions from the robot’s internal controller or software, which calculates how many degrees the motor must rotate to align the dispenser compartment correctly. Here, the user inputs the desired angle, representing the internal calculation determining the motor’s required rotation.
 
-7. Full Rotation Cycle and Simulated Waiting
+## 7. Full Rotation Cycle and Simulated Waiting
 ```python
 
 self.rotate_turtle_to_target(target_angle)
