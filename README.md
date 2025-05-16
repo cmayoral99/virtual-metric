@@ -1,3 +1,6 @@
+# Report on Results and Analysis of the Virtual Metric in the Turtlesim Simulation. 
+## 1. Code
+
 The presented code effectively implements a virtual angular control metric using a proportional controller, striking a balance between precision and simplicity. Constant reading of the angular position and dynamic error calculation enable fine control that emulates a physical encoder’s function.
 
 The inclusion of the return-to-zero procedure and wait period represent practical measures to avoid cumulative errors and simulate real dispensing scenarios, thus ensuring safety and reliability in medication delivery.
@@ -115,3 +118,71 @@ rospy.sleep(10)
 ```
 Explanation:
 The cycle consists of rotating to the target angle, waiting a fixed time to simulate medication dispensing, and returning to zero degrees. This prevents error accumulation and models real-world operation conditions.
+
+# Report on Results and Analysis of the Virtual Metric in the Turtlesim Simulation
+## 2. Description
+
+## Introduction
+
+In the context of developing the autonomous medication dispensing robot, one of the main technical challenges was the absence of a physical encoder on the stepper motor responsible for rotating the dispensing compartment. To overcome this limitation, a proportional control system (P-controller) was implemented in a simulated environment using Turtlesim, which emulates the behavior of a virtual encoder, allowing precise measurement and correction of the angular position.
+
+This report details the experimental results, analysis, and conclusions obtained during the evaluation of the performance of this virtual metric, as well as the strategies implemented to mitigate cumulative errors and ensure system reliability in a hospital environment.
+
+## Results and Analysis
+
+### Part 1: Angular Precision Evaluation
+
+Multiple tests were conducted focusing on achieving a target rotation of 90 degrees. During these tests, angular position and error data were recorded via console outputs, and graphs were generated using the Pyplot library to visualize the controller's behavior.
+
+* **Observed angular error:** The proportional controller exhibited an angular error ranging approximately between 0.30° and 1.18°, an adequate precision level for a simple controller of this nature.
+* **Graph analysis:** The generated curves show that the turtle reaches the target position with minor oscillations and stable convergence around the desired angle.
+* **Improvement potential:** By adjusting the proportional gain (Kp), the error can be slightly reduced, although it remains within the expected margin.
+
+This first phase validated the basic effectiveness of the proportional controller to reach angular positions with minimal error, sufficient for dispensing applications with moderate precision requirements.
+
+### Part 2: Cumulative Error Problem
+
+In the original simulation, after each rotation, the turtle requested a new target angle from the user and rotated directly from its current position, which led to progressive accumulation of errors.
+
+* **Impact of cumulative error:**  
+  After approximately 10 to 20 rotations, the dispenser door began to misalign with the correct compartment, affecting system accuracy.  
+  Between 45 and 60 rotations, this misalignment could result in incorrect medication delivery to different patients, a critical risk in hospital applications.
+
+This finding underscored the need for a solution to control and limit the effect of cumulative angular error.
+
+### Part 3: Implementation of Return to Initial Position
+
+To solve the identified problem, a strategy was adopted where the turtle is programmed to return to its initial position (0 degrees) after each rotation, before receiving the next angular instruction.
+
+* **Benefits:**  
+  This reset mechanism prevents error accumulation, maintaining precise alignment of the dispenser over multiple delivery cycles.  
+  Safety and reliability are prioritized over energy efficiency, as the additional movement nearly doubles energy consumption per cycle.
+
+* **Symbolic pause:**  
+  A 10-second pause was added after each delivery, simulating the estimated time a patient takes to take their medication. This pause serves as a placeholder for future validation under real conditions.
+
+## Justification and Conclusions
+
+* **Reliability:**  
+  The average angular error remains below 1 degree, ensuring reliable performance for a standard isolation room with 20 to 25 patients, with no significant risk of delivery errors.
+
+* **Failure reduction:**  
+  The encoder simulation together with the proportional controller and return-to-zero implementation significantly reduces the likelihood of critical errors, increasing dispensing safety.
+
+* **Safety against clinical risks:**  
+  By preventing cumulative errors from affecting alignment, the integrity of the process is protected and incorrect medication administration is avoided.
+
+## Future Improvement Proposals
+
+* **Interchangeable trays:**  
+  It is proposed to introduce trays with compartments of various sizes adaptable to the number of patients, ranging from small units with 3 compartments for classrooms or small groups, up to trays with 50 compartments for large rooms or pandemic situations.
+
+* **Ease of handling:**  
+  These trays should be easily interchangeable by nursing staff to optimize maintenance and system adaptability.
+
+* **Balance between capacity and risk:**  
+  Fewer compartments reduce the chance of delivery error, although the system remains safe and efficient even at maximum capacity, which is crucial for high-demand scenarios.
+
+* **Data-based adjustments:**  
+  It is recommended to perform tests in real hospital environments to precisely calibrate pauses and validate controller behavior under operational conditions.
+
